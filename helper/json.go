@@ -1,15 +1,13 @@
 package helper
 
 import (
-	"Aszaychik/belajar-restful-api/model/web"
 	"encoding/json"
 	"net/http"
 )
 
 func ReadFromRequestBody(request *http.Request, result interface{}) {
 	decoder := json.NewDecoder(request.Body)
-	categoryCreateRequest := web.CategoryCreateRequest{}
-	err := decoder.Decode(&categoryCreateRequest)
+	err := decoder.Decode(result)
 	PanicIfError(err)
 }
 
