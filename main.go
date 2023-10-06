@@ -5,6 +5,7 @@ import (
 	"Aszaychik/belajar-restful-api/controller"
 	"Aszaychik/belajar-restful-api/exception"
 	"Aszaychik/belajar-restful-api/helper"
+	"Aszaychik/belajar-restful-api/middleware"
 	"Aszaychik/belajar-restful-api/repository"
 	"Aszaychik/belajar-restful-api/service"
 	"net/http"
@@ -35,7 +36,7 @@ func main() {
 
 	server := http.Server{
 		Addr: "localhost:3000",
-		Handler: router,
+		Handler: middleware.NewAuthMiddleware(router),
 	}
 
 	err := server.ListenAndServe()
